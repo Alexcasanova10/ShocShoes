@@ -44,6 +44,11 @@ public class Nodo {
         this.anterior = anterior;
     }
     
+     @Override
+    public String toString() {
+        return "" +  dataProducto ;
+    }
+    
 
     
     

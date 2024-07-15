@@ -9,7 +9,7 @@ public class ShocShoes {
  
     public static void main(String[] args) {
     
-    /*arrProductos arregloProd = new arrProductos(3,3);
+    arrProductos arregloProd = new arrProductos(4,4);
     listAlmacen almacenShocShoes = new listAlmacen();
     
     arregloProd.agregarProducto(0, 0, new Productos("Forum Adidas",28.0,1001));
@@ -24,19 +24,61 @@ public class ShocShoes {
     arregloProd.agregarProducto(2, 0, new Productos("Reebook Chidos",28.0,1003));
     arregloProd.agregarProducto(2, 1, new Productos("Reebook Chidos",27.0,1003));
     arregloProd.agregarProducto(2, 2, new Productos("Reebook Chidos",26.0,1003));
+    
+    arregloProd.agregarProducto(3, 0, new Productos("Puma Mamalones",26.0,1004));
+    arregloProd.agregarProducto(3, 1, new Productos("Puma Mamalones",29.0,1004));
+    arregloProd.agregarProducto(3, 2, new Productos("Puma Mamalones",24.0,1004));
  
     
-    arregloProd.imprimirProductos();
-    //así se agergan productos usando ARREGLO BIDIMENSIONAL // ya tiene que esta rprecargado
+    
+    
+    //arregloProd.imprimirProductos();
+    
+    //así se agergan productos usando ARREGLO BIDIMENSIONAL // el producto ya tiene que esta rprecargado
     almacenShocShoes.insert_inicio(arregloProd.obtenerProducto(0, 0));
+    almacenShocShoes.insertar_siguiente(arregloProd.obtenerProducto(0, 1));
+    almacenShocShoes.insertar_siguiente(arregloProd.obtenerProducto(0, 2));
+    almacenShocShoes.insertar_siguiente(arregloProd.obtenerProducto(1, 0));
+  
+    
+     almacenShocShoes.recorrerLista();
+    System.out.println("  ");
+    almacenShocShoes.insert_final(arregloProd.obtenerProducto(3, 0));
+        
+        
+     
+
+    System.out.println("Listaa con elemento actualizado");
+    //asi se edita la info
+    almacenShocShoes.editar_Producto(4, new Productos("EjemploModelo",27.0,2));
     almacenShocShoes.recorrerLista();
-    almacenShocShoes.reporteProducto(1001);*/
-        mostrarMenu();
-   }  
-    /*MENU SHOC SHOES*/
+        System.out.println(almacenShocShoes.buscarNodo(3));  
+    
+     
+
+// mostrarMenu();
+       
+       
+       
+   }
     
     
-    public static void mostrarMenu(){
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*public static void mostrarMenu(){
         
         JOptionPane.showMessageDialog(null, "**BIENVENIDO A SHOC SHOES**");
         
@@ -101,46 +143,7 @@ public class ShocShoes {
                     }while (userOpProd != 3);
                      
                     break;
-                case 1:
-                    /*do {
-                        userOpAlma = JOptionPane.showOptionDialog(
-                                    null, 
-                                    "Elige una acción", 
-                                    "Menu Almacen", 
-                                    JOptionPane.DEFAULT_OPTION, 
-                                    JOptionPane.INFORMATION_MESSAGE, 
-                                    null, 
-                                    opcionesAlmacen, opcionesAlmacen[0]);
-                        switch(userOpAlma){
-                            case 0:
-                                JOptionPane.showMessageDialog(null, "Opción x");
-                            break;
-                            case 1:
-                                JOptionPane.showMessageDialog(null, "Opción x");
-                            break;
-                            case 2:
-                                JOptionPane.showMessageDialog(null, "Opción x");
-                            break;
-                            case 3:
-                                JOptionPane.showMessageDialog(null, "Opción x");
-                            break;
-                            case 4:
-                                JOptionPane.showMessageDialog(null, "Opción x");
-                            break;
-                            case 5:
-                                JOptionPane.showMessageDialog(null, "Opción x");
-                            break;
-                            case 6:
-                                JOptionPane.showMessageDialog(null, "Opción x");
-                            break;
-                            case 7:
-                                JOptionPane.showMessageDialog(null, "Opción x");
-                            break;
-                            case 8:
-                                JOptionPane.showMessageDialog(null, "Redirección a Menú Principal");
-                            break;   
-                        }
-                    } while (userOpAlma != 8);*/
+                case 1: 
                       while (true) {
                         userOpAlma = JOptionPane.showConfirmDialog(
                             null, 
@@ -213,8 +216,6 @@ public class ShocShoes {
                     } while (userOpCompras != 2);
                     break;
                     
-                    
-                    
                 case 3:
                     JOptionPane.showMessageDialog(null, "¡Gracias por usar ShocShoes!");
                     break;
@@ -223,7 +224,7 @@ public class ShocShoes {
                     break;
             }
         }while (userOpcion != 3);
-    }
+    }*/
     
     
  

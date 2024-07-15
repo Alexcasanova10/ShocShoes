@@ -44,7 +44,7 @@ public class Productos {
 
     @Override
     public String toString() {
-        return "Modelo: " + modelo + ", SKU: " + modeloSKU + ", Talla: " + talla;
+        return   modelo + ", SKU: " + modeloSKU + ", Talla: " + talla;
     }
     
     

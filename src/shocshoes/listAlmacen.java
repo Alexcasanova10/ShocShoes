@@ -36,8 +36,7 @@ public class listAlmacen {
         this.fin = null;
         
     }
-    //insertar producto
-    public void insert_inicio(Productos producto){
+     public void insert_inicio(Productos producto){
         Nodo nodoNuevo = new Nodo(producto);
         if (inicio == null) {
             inicio = nodoNuevo;
@@ -50,37 +49,69 @@ public class listAlmacen {
     }
      
 
-    
-    public void insert_posx(int lugarAnterior,int lugarPosterior,Productos producto){
-        Nodo nodoNuevo = new Nodo(producto);
+    public void insertar_siguiente(Productos producto) {
+    Nodo nodoNuevo = new Nodo(producto);
+
+     if (inicio == null) {
+        inicio = nodoNuevo;
+        fin = nodoNuevo;
+    } else {
+        Nodo nodoSiguiente = inicio.getSiguiente();
+
+         nodoNuevo.setSiguiente(nodoSiguiente);
+        nodoNuevo.setAnterior(inicio);
+
+        inicio.setSiguiente(nodoNuevo);
         
-            if(inicio == null){
+         if (nodoSiguiente != null) {
+            nodoSiguiente.setAnterior(nodoNuevo);
+        } else {
+             fin = nodoNuevo;
+        }
+    }
+}
+
+    
+    
+    public void insert_posx(int pos, Productos producto){
+ Nodo nodoNuevo = new Nodo(producto);
+
+     if (inicio == null) {
+        inicio = nodoNuevo;
+        fin = nodoNuevo;
+    } else {
+         if (pos == 1) {
+            nodoNuevo.setSiguiente(inicio);
+            inicio.setAnterior(nodoNuevo);
             inicio = nodoNuevo;
-            fin = nodoNuevo;
-        }else{
+        } else {
             Nodo nodoActual = inicio;
-            int posicion = 1;
-            
-            while(nodoActual != null && posicion != lugarAnterior){
+            int contador = 1;
+
+             while (nodoActual != null && contador < pos - 1) {
                 nodoActual = nodoActual.getSiguiente();
-                posicion++;
+                contador++;
             }
-            
-            if (nodoActual != null) {
+
+             if (nodoActual != null) {
                 Nodo nodoPosterior = nodoActual.getSiguiente();
-                
-                if (nodoPosterior != null && nodoPosterior == buscarNodo(lugarPosterior)) {
-                    nodoNuevo.setSiguiente(nodoPosterior);
-                    nodoNuevo.setAnterior(nodoActual);
-                    nodoActual.setSiguiente(nodoNuevo);
+
+                nodoNuevo.setSiguiente(nodoPosterior);
+                nodoNuevo.setAnterior(nodoActual);
+                nodoActual.setSiguiente(nodoNuevo);
+
+                if (nodoPosterior != null) {
                     nodoPosterior.setAnterior(nodoNuevo);
-                }else{
-                    System.out.println("Posición posterior no válida");
-                }   
-            }else{
-                System.out.println("Posición anterior no válida");
+                } else {
+                     fin = nodoNuevo;
+                }
+            } else {
+                System.out.println("Posición no válida");
             }
         }
+    }        
+        
+          
     }
     
     public void insert_final(Productos producto){
@@ -134,8 +165,7 @@ public class listAlmacen {
     }
     
     
-    /*PENDIENTE POR HACER*/
-    public void eliminar_x(int pos){
+     public void eliminar_x(int pos){
         if (inicio == null) {
             System.out.println("La lista está vacía");
             return;
@@ -215,6 +245,8 @@ public class listAlmacen {
         
         if (contador == lugar && nodoActual != null) {
             return nodoActual;
+            
+            
         }
         
         System.out.println("No se encontró un producto en la posición indicada");
@@ -225,7 +257,7 @@ public class listAlmacen {
         if(inicio == null){
             System.out.println("El almancen de productos está vacío");
         }else{
-            System.out.println("El almacen contiene " + tamanioLista() + " cantidad de productos");
+            System.out.println("El almacen contiene " + tamanioLista() + " productos");
         }
     }
     
