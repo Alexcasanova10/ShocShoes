@@ -14,6 +14,11 @@ public class Productos {
         this.modeloSKU = modeloSKU;
     }
     
+    public Productos(String modelo, double talla) {
+        this.modelo = modelo;
+        this.talla = talla;
+    }
+    
     public Productos(int modeloSKU) {
         this.modeloSKU = modeloSKU;
     }

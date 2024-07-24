@@ -32,20 +32,49 @@ public class arrProductos {
         return modelosProducto[modeloIndex][tallaIndex];
     }
     
-    public void imprimirProductos(){
-        for (int i = 0; i < modelosProducto.length; i++) {
+    public String imprimirProductos(){
+        StringBuilder productos = new StringBuilder();
+        
+         for (int i = 0; i < modelosProducto.length; i++) {
             for (int j = 0; j < modelosProducto[i].length; j++) {
-                if(modelosProducto[i][j] != null){
-                    System.out.println(modelosProducto[i][j] + "\n") ;
-                }else{
-                    System.out.println("La lista está vacía");
+                if (modelosProducto[i][j] != null) {
+                    productos.append(modelosProducto[i][j]).append("\n");
                 }
             }
         }
+
+        if (productos.length() == 0) {
+            productos.append("La lista de productos está vacía");
+        }
+
+        return productos.toString();
+        
+        
     }
     
+   public int[] obtenerSiguienteIndiceDisponible() {
+    for (int i = 0; i < modelosProducto.length; i++) {
+        for (int j = 0; j < modelosProducto[i].length; j++) {
+            if (modelosProducto[i][j] == null) {
+                return new int[]{i, j};
+            }
+        }
+    }
+    return null;
+}
 
     
+        public int obtenerSiguienteSKU() {
+        int maxSKU = 1000; 
+        for (int i = 0; i < modelosProducto.length; i++) {
+            for (int j = 0; j < modelosProducto[i].length; j++) {
+                if (modelosProducto[i][j] != null && modelosProducto[i][j].getmodeloSKU() > maxSKU) {
+                    maxSKU = modelosProducto[i][j].getmodeloSKU();
+                }
+            }
+        }
+        return maxSKU + 1;
+    }
     
     
     

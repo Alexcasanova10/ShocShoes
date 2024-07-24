@@ -5,29 +5,8 @@
 package shocshoes;
  
 public class listAlmacen {
-    //CADA PRODUCTO ES UN NODO (OSEA CADA PRODCUTO CON TALLA es un nodo, si tnemeos dos productos iguales (mismo modelo,talla y sku, entonces tenemos dos nodos)
-//Básicamente, hacer el stock y almacén, vincular nodo a arreglos bidimensionales de productos
-//llenar el almacen en la clase main
-/* crear metodos: 
-    insert_incio // done
-    insert_final // done
-    insertar_x(nodo anterior, nodo siguietne) // done
-    
-    eliminar_inicio // done
-    eliminar_final // done
-    eliminar_x(nodo anterior, nodo siguietne) // done
-    
-    actualizarNodo(int posicion) //actualiza la data de un nodo // done
-    recorreLista // done
-    buscarNodo(nodo en posicion que encontrar x y devuelve su info) // done
-    
-    verificarVacia // done
-    size //devuelve la cantidad de elementos en el stock // done
-    borrarLista(borra toda la lista) // done
- 
-*crud : agregar,mostrar, actualizar, borrar
+    private arrProductos arregloProductos;
 
-*/
     public Nodo inicio;
     public Nodo fin;
     
@@ -36,6 +15,12 @@ public class listAlmacen {
         this.fin = null;
         
     }
+    
+     public arrProductos getArregloProductos() {
+        return arregloProductos;
+    }
+     
+     
      public void insert_inicio(Productos producto){
         Nodo nodoNuevo = new Nodo(producto);
         if (inicio == null) {
@@ -217,17 +202,38 @@ public class listAlmacen {
         }
     }
     
-    public void recorrerLista(){
+    
+    public void eliminarNodo(Nodo nodo) {
+    if (nodo == null) {
+        return;
+    }
+
+    if (nodo.getAnterior() != null) {
+        nodo.getAnterior().setSiguiente(nodo.getSiguiente());
+    } else {
+        inicio = nodo.getSiguiente();
+    }
+
+    if (nodo.getSiguiente() != null) {
+        nodo.getSiguiente().setAnterior(nodo.getAnterior());
+    } else {
+        fin = nodo.getAnterior();
+    }
+}
+    
+    
+    
+    public String recorrerLista() {
         if (inicio == null) {
-            System.out.println("Almacen vacía");
-            return;
+            return "Almacen vacía";
         }
+        StringBuilder stock = new StringBuilder();
         Nodo temp = inicio;
-        while(temp != null){
-            System.out.println(temp.getDataProducto() + " ->");
+        while (temp != null) {
+            stock.append(temp.getDataProducto()).append(" -> ");
             temp = temp.getSiguiente();
         }
-         
+        return stock.toString();
     }
     
     public Nodo buscarNodo(int lugar){
@@ -281,31 +287,37 @@ public class listAlmacen {
     
     
     
-    public void reporteProducto(int modeloSKU){
+public String reporteProducto(int modeloSKU) {
         int cont = 0;
         Productos producto = null;
         Nodo temp = inicio;
         
         if (inicio == null) {
-            System.out.println("Almacén vacío");
-            return;
+            return "Almacén vacío";
         }
         
-        while(temp != null){
-            if (temp.getDataProducto().modeloSKU == modeloSKU) {
+        StringBuilder reporte = new StringBuilder();
+        
+        while (temp != null) {
+            if (temp.getDataProducto().getmodeloSKU()== modeloSKU) {
                 cont++;
                 producto = temp.getDataProducto();
             }
-            
             temp = temp.getSiguiente();
         }
         
         if (cont > 0 && producto != null) {
-            System.out.println("REPORTE DE BÚSQUEDA: Modelo " + producto.getModelo() + ", SKU: " + modeloSKU + ", Cantidad: " +             cont);
-        }else{
-            System.out.println("No se encontraron productos con el SKU: " + modeloSKU);
+            reporte.append("REPORTE DE BÚSQUEDA: Modelo ")
+                   .append(producto.getModelo())
+                   .append(", SKU: ")
+                   .append(modeloSKU)
+                   .append(", Cantidad: ")
+                   .append(cont);
+        } else {
+            reporte.append("No se encontraron productos con el SKU: ").append(modeloSKU);
         }
         
+        return reporte.toString();
     }
     
     
