@@ -16,11 +16,12 @@ public class ShocShoes {
     
 public static void mostrarMenu(){
      arrProductos arregloProd = new arrProductos(4,4);
-    listAlmacen almacenShocShoes = new listAlmacen();
-    
+    /*listAlmacen almacenShocShoes = new listAlmacen() antes así estaba;*/
+    listAlmacen almacenShocShoes = new listAlmacen(arregloProd); 
+
     arregloProd.agregarProducto(0, 0, new Productos("Forum Adidas",28.0,1001));
-    arregloProd.agregarProducto(0, 1, new Productos("Forum Adidas",26.0,1001));
-    arregloProd.agregarProducto(0, 2, new Productos("Forum Adidas",27.0,1001));
+    arregloProd.agregarProducto(0, 1, new Productos("Forum Adidas",28.0,1001));
+    arregloProd.agregarProducto(0, 2, new Productos("Forum Adidas",28.0,1001));
          
     arregloProd.agregarProducto(1, 0, new Productos("Air Jordan ",28.0,1002));
     arregloProd.agregarProducto(1, 1, new Productos("Air Jordan ",27.0,1002));
@@ -53,7 +54,7 @@ public static void mostrarMenu(){
     String[] opcionesProductos = {"Agregar Productos", "Información de Producto", "Listado de Items", "Volver a menú principal"};
 
     // Opciones Menú Almacen
-    String[] opcionesAlmacen = {"Ver Stock Completo", "Buscar producto","Reporte de producto", "Insertar Producto en Stock", "Insertar Producto en posición deseada", "Insertar al final", "Editar información de producto", "Eliminar producto de Stock", "Eliminar ultimo producto", "Volver a menú principal"};
+    String[] opcionesAlmacen = {"Ver Stock Completo", "Buscar producto","Reporte de producto", "Insertar Producto en Stock", "Insertar Producto en posición deseada", "Insertar al final", "Editar información de producto", "Eliminar producto de Stock",  "Volver a menú principal"};
 
     JComboBox<String> comboBox = new JComboBox<>(opcionesAlmacen);
 
@@ -174,8 +175,14 @@ public static void mostrarMenu(){
                             String busqueda = JOptionPane.showInputDialog(null,"Ingresa la posición del producto a buscar");
                             
                             int busquedaInt = Integer.parseInt(busqueda);
-                            almacenShocShoes.buscarNodo(userOpAlma);
                             
+                            Nodo nodoBuscado =  almacenShocShoes.buscarNodo(busquedaInt);
+                            
+                            if (nodoBuscado != null) {
+                                JOptionPane.showMessageDialog(null, nodoBuscado.toString());
+                            } else {
+                                JOptionPane.showMessageDialog(null, "No se encontró un producto en la posición indicada");
+                            }
                               
                               break;
                          case "Reporte de producto":
@@ -210,12 +217,13 @@ public static void mostrarMenu(){
                             talla = JOptionPane.showInputDialog("Inserte la talla");
                             tallaD = Double.parseDouble(talla);
                             
-                            
-                            
                             arregloProd = almacenShocShoes.getArregloProductos(); 
-                            int skuCons = arregloProd.obtenerSiguienteSKU();
-                            
-                            
+        
+                            if (arregloProd == null) {
+                                JOptionPane.showMessageDialog(null, "Error: El arreglo de productos no está inicializado.");
+                                break;
+                            }
+                            int skuCons = arregloProd.obtenerSiguienteSKU();      
                             Productos prodDes = new Productos(modelo,tallaD,skuCons);
                             
                             almacenShocShoes.insert_posx(posProdInt, prodDes);
@@ -273,14 +281,7 @@ public static void mostrarMenu(){
                             
                             
                             break;
-                        case "Eliminar último producto":
-                            JOptionPane.showMessageDialog(null, "Opción: Eliminar último producto");
-                            
-                            almacenShocShoes.eliminar_final();
-                            
-                            JOptionPane.showMessageDialog(null, "Se ha eliminado el ultimo producto del almacén.");
-                            
-                            break;
+                      
                         case "Volver a menú principal":
                             JOptionPane.showMessageDialog(null, "Redirección a Menú Principal");
                             break;
@@ -313,11 +314,6 @@ public static void mostrarMenu(){
                                     
                             String talla = JOptionPane.showInputDialog("Inserte la talla");
                             double tallaD = Double.parseDouble(talla);
-                            
-                            String skuCompra = JOptionPane.showInputDialog("SKU de producto a comprar");
-                            
-                            
-                            int skuCons = Integer.parseInt(skuCompra);
                             
                             recursiveStock stockCompra = new  recursiveStock();
                             

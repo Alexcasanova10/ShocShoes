@@ -16,6 +16,10 @@ public class listAlmacen {
         
     }
     
+    public listAlmacen(arrProductos arregloProductos) {
+        this.arregloProductos = arregloProductos;  
+    }
+     
      public arrProductos getArregloProductos() {
         return arregloProductos;
     }
@@ -186,21 +190,7 @@ public class listAlmacen {
         
     }
     
-    
-    
-    public void eliminar_final(){
-        if (fin == null) {
-            System.out.println("Lista vacía");
-            return;
-        }
-        fin = fin.getAnterior();
-        
-        if (fin != null) {
-            fin.setSiguiente(null);
-        }else{
-            inicio = null;
-        }
-    }
+  
     
     
     public void eliminarNodo(Nodo nodo) {
@@ -251,8 +241,6 @@ public class listAlmacen {
         
         if (contador == lugar && nodoActual != null) {
             return nodoActual;
-            
-            
         }
         
         System.out.println("No se encontró un producto en la posición indicada");

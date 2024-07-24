@@ -46,7 +46,10 @@ public class Nodo {
     
      @Override
     public String toString() {
-        return "" +  dataProducto ;
+        return "" +  dataProducto.toString() ;
+        /*
+        return "" +  dataProducto; antes estaba asi*/
+        
     }
     
 
